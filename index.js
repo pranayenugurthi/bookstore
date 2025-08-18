@@ -84,7 +84,7 @@ app.post('/books', (req, res) => {
     ];
      pool.query(sql, params,(err,result)=>{
         if(err){
-            res.status(500).json({ error: 'Database error' });
+            res.status(500).json({ error: 'Database error' ,err});
         } else {
             res.status(201).json({ message: result });
             
