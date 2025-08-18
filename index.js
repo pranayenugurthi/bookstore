@@ -17,7 +17,7 @@ const pool = mysql.createConnection({
   user: 'root',
   password: 'root',
   database: 'bookstore',
-
+  port:3306
 });
 pool.on('error', (err) => {
     if(err){
