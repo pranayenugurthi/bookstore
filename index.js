@@ -13,12 +13,14 @@ app.use(bodyParser.json());
 
 // MySQL connection pool - configure your database credentials
 const pool = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'root',
-  database: 'bookstore',
-  port:3306
+  host: "bujwr8wyil6qjlge4p0z-mysql.services.clever-cloud.com",
+  user: "ugpcbhyjmkvkzl5l",
+  password: "jSTNFZSCgkLkRyQnktWh",
+  database: "bujwr8wyil6qjlge4p0z",
+  port: 3306
 });
+
+
 pool.on('error', (err) => {
     if(err){
         console.error('MySQL error:', err);
