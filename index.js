@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 4000;
+const port = 3306;
 app.use(cors())
 // Middleware
 app.use(bodyParser.json());
@@ -14,8 +14,8 @@ app.use(bodyParser.json());
 // MySQL connection pool - configure your database credentials
 const pool = mysql.createConnection({
   host: 'localhost',
-  user: 'pranay',
-  password: 'pranay123',
+  user: 'root',
+  password: 'root',
   database: 'bookstore',
 
 });
