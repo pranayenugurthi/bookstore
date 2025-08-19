@@ -204,13 +204,17 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const port = 3006 || 5000;
 app.use(cors())
 // Middleware
 app.use(bodyParser.json());
-
+app.use(express.static(path.join(__dirname, "client/build")));
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 // MySQL connection pool - configure your database credentials
 const pool = mysql.createConnection({
  host: "bujwr8wyil6qjlge4p0z-mysql.services.clever-cloud.com",
@@ -401,11 +405,13 @@ app.delete('/books/:id', async (req, res) => {
         res.json({ message: 'All books deleted' });
       });
     }else{
-      pool.query('DELETE FROM books WHERE id = ?', [req.params.id]);
+      pool.query('DELETE FROM books WHERE id = ?', [req.params.id], (err, result) => {
+      if (err) return res.status(500).json({ error: 'Database error' });
       if (result.affectedRows === 0) {
         return res.status(404).json({ message: 'Book not found' });
       }
-    res.json({ message: 'Book deleted' });
+      res.json({ message: 'Book deleted' });
+    });
     }
   } catch (err) {
     console.error(err);
