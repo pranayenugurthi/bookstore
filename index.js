@@ -204,17 +204,14 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
+
 
 const app = express();
 const port = 3006 || 5000;
 app.use(cors())
 // Middleware
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "client/build")));
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
+
 // MySQL connection pool - configure your database credentials
 const pool = mysql.createConnection({
  host: "bujwr8wyil6qjlge4p0z-mysql.services.clever-cloud.com",
