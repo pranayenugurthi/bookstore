@@ -31,67 +31,7 @@ pool.connect((err)=>{
         console.log("err",err)
         return
     }
-    // const createTable=`
-    //   CREATE TABLE IF NOT EXISTS books (
-    //     id INT AUTO_INCREMENT PRIMARY KEY,
-    //     title VARCHAR(255) NOT NULL,
-    //     author VARCHAR(255) NOT NULL,
-    //     isbn VARCHAR(20) NOT NULL,
-    //     publishedDate VARCHAR(255) NOT NULL,
-    //     publisher VARCHAR(255) NOT NULL,
-    //     genre VARCHAR(100) NOT NULL,
-    //     description TEXT NOT NULL,
-    //     pageCount INT NOT NULL,
-    //     language VARCHAR(50) NOT NULL,
-    //     coverImage VARCHAR(255) NOT NULL,
-    //     createdAt VARCHAR(255),
-    //     updatedAt VARCHAR(255),
-    //     price INT
-    //   );
-    // `;
 
-    // const dropTable=`
-    //   DROP TABLE IF EXISTS books
-    // `;
-
-    // const createTable=`
-    //     CREATE TABLE IF NOT EXISTS user(
-    //     id INT NOT NULL,
-    //     username VARCHAR(45) NOT NULL,
-    //     password VARCHAR(45) NOT NULL,
-    //     role VARCHAR(45) NULL DEFAULT 'user',
-    //     PRIMARY KEY (id),
-    //     UNIQUE INDEX username_UNIQUE (username ASC) VISIBLE,
-    //     UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE);
-    // `;
-
-    // const alterTable=`
-    //   ALTER TABLE user
-    //   CHANGE COLUMN id id INT NOT NULL AUTO_INCREMENT;
-    // `
-
-//     const alterTable=`ALTER TABLE user 
-// ADD COLUMN resetPwd VARCHAR(45) NULL AFTER role;`
-  //   const createTable=`
-  //     CREATE TABLE IF NOT EXISTS comments (
-  // id INT NOT NULL,
-  // bookId INT NOT NULL,
-  // userId INT NOT NULL,
-  // comment LONGTEXT NULL,
-  // rating FLOAT NULL,
-  // PRIMARY KEY (id),
-  // UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE);
-  //   `;
-// const createTable=`
-//      CREATE TABLE IF NOT EXISTS rating (
-//       id INT NOT NULL auto_increment,
-//       bookId INT NOT NULL,
-//       username varchar(45) NOT NULL,
-//       rating FLOAT NOT NULL,
-//       date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//       PRIMARY KEY (id),
-//       UNIQUE INDEX id_UNIQUE (id ASC) VISIBLE);
-// `;
 const createTable=`
     create table if not exists comments(
    id INT AUTO_INCREMENT PRIMARY KEY,
