@@ -28,35 +28,26 @@ pool.on('error', (err) => {
     console.error('MySQL connected');
     
 });
-pool.connect((err)=>{
-    if(err){
-        console.log("err",err)
-        return
-    }
+const db = pool.promise();
 
-const createTable=`
-    create table if not exists comments(
-   id INT AUTO_INCREMENT PRIMARY KEY,
-    bookId INT NOT NULL,
-    username varchar(45) NOT NULL,
-    comment longtext NOT NULL,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)
-`
-// const createTable=`
-//     drop table comments
-// `
-    pool.query(createTable, (err, result) => {
-      if (err) {
-        console.error('Error creating table:', err);
-        return;
-      }
-      console.log('Table created successfully');
-    });
-
-
-    // console.log("connected")
-
-})
+// Example: create table once
+(async () => {
+  try {
+    const createTable = `
+      CREATE TABLE IF NOT EXISTS comments (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        bookId INT NOT NULL,
+        username VARCHAR(45) NOT NULL,
+        comment LONGTEXT NOT NULL,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+    await db.query(createTable);
+    console.log("✅ Table ensured");
+  } catch (err) {
+    console.error("Error creating table:", err);
+  }
+})();
 
 // Create a book
 app.get("/book/:id/rating",(req,res)=>{
