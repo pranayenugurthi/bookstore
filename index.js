@@ -12,12 +12,14 @@ app.use(cors())
 app.use(bodyParser.json());
 
 // MySQL connection pool - configure your database credentials
-const pool = mysql.createConnection({
+const pool = mysql.createPool({
  host: "bujwr8wyil6qjlge4p0z-mysql.services.clever-cloud.com",
   user: "ugpcbhyjmkvkzl5l",
   password: "jSTNFZSCgkLkRyQnktWh",
   database: "bujwr8wyil6qjlge4p0z",
-
+  waitForConnections: true,
+  connectionLimit: 10,   // important: limit connections
+  queueLimit: 0
 });
 pool.on('error', (err) => {
     if(err){
