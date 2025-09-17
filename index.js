@@ -65,7 +65,20 @@ app.get("/book/:id/rating",(req,res)=>{
     res.status(500).json({error:"DataBase errr"})
   }
 })
-
+app.get("/ratings",(req,res)=>{
+  try{
+     pool.query("select * from rating",(error,result)=>{
+    if(error){
+      console.log("Error get Rating",error)
+      res.status(500).json({error:"Database error"})
+    }
+    res.status(200).json({message:"SuccessFull"})
+  })
+  }catch(err){
+     res.status(500).json({err:"database error"})
+  }
+ 
+})
 app.post("/book/:id/addRating",(req,res)=>{
   const bookId=req.params.id;
   const {username,rating}=req.body;
